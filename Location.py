@@ -10,6 +10,11 @@ def app():
     df = pd.read_csv("/mount/src/datascience1/charger_20230531.csv", encoding='cp949')
 
     st.dataframe(df, height=200)
+    df[['위도', '경도']] = df['위도경도'].str.split(',', expand=True)
+
+    # 문자열 상태일 수 있으니 실수(float)로 변환
+    df['위도'] = df['위도'].astype(float)
+    df['경도'] = df['경도'].astype(float)
 
     df[["lat","lon"]] = df[["위도","경도"]]
 
