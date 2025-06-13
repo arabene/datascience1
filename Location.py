@@ -25,7 +25,6 @@ def app():
     for idx, row in df1.iterrows():
         folium.Marker(
             location=[row["lat"], row["lon"]],
-            popup=row["설치장소"],
             icon=folium.Icon(color="blue", icon="info-sign"),
         ).add_to(marker_cluster)
 
