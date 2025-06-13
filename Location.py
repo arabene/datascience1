@@ -13,9 +13,10 @@ def app():
     df[['위도', '경도']] = df['위도경도'].str.split(',', expand=True)
 
     # 문자열 상태일 수 있으니 실수(float)로 변환
-    df['위도'] = df['위도'].astype(float)
-    df['경도'] = df['경도'].astype(float)
-    df1 = df[['충전소명', '주소', '위도', '경도']]
+    df1 = df[['충전소명', '주소', '위도', '경도']].dropna(subset=['위도', '경도'])
+    df1['위도'] = df1['위도'].astype(float)
+    df1['경도'] = df1['경도'].astype(float)
+
     st.dataframe(df1, height=200)
     df1[["lat","lon"]] = df1[["위도","경도"]]
 
