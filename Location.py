@@ -15,14 +15,14 @@ def app():
     # 문자열 상태일 수 있으니 실수(float)로 변환
     df['위도'] = df['위도'].astype(float)
     df['경도'] = df['경도'].astype(float)
-
-    df[["lat","lon"]] = df[["위도","경도"]]
+    df1 = df[['충전소명', '주소', '위도', '경도']]
+    df1[["lat","lon"]] = df1[["위도","경도"]]
 
     m = folium.Map(location=[35.1799817, 128.1076213], zoom_start=13)
 
     marker_cluster = MarkerCluster().add_to(m)
 
-    for idx, row in df.iterrows():
+    for idx, row in df1.iterrows():
         folium.Marker(
             location=[row["lat"], row["lon"]],
             popup=row["설치장소"],
