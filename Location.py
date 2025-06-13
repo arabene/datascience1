@@ -7,7 +7,7 @@ import pandas as pd
 
 st.title("전기차 충전소 현황")
 
-df = pd.read_csv("/mount/src/datascience1/charger_20230531.csv", encoding='euc-kr')
+df = pd.read_csv("/mount/src/datascience1/charger_20230531.csv", encoding='cp949')
 
 st.dataframe(df, height=200)
 
