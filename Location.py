@@ -7,7 +7,7 @@ import pandas as pd
 def app():
     st.title("전기차 충전소 현황")
 
-    df = pd.read_csv("/workspaces/datascience1/charger_20230531.csv", encoding='euc-kr')
+    df = pd.read_csv("charger_20230531.csv", encoding='euc-kr')
 
 
 # 
