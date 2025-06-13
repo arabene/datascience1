@@ -8,11 +8,11 @@ st.set_page_config(
 )
 
 from Home import app as home_app
-from Location import app as location_app
+#from Location import app as location_app
 
 PAGES = {
     "메인": home_app,
-    "충전소 위치": location_app,
+   # "충전소 위치": location_app,
 }
 
 st.sidebar.title("데싸 기말")
