@@ -8,5 +8,5 @@ def app():
     st.write("현재 작업 경로:", os.getcwd())
     st.write("현재 디렉터리 파일 목록:", os.listdir())
 
-    df = pd.read_csv("charger_20230531.csv", encoding='cp949')
+    df = pd.read_csv("/workspaces/datascience1/charger_20230531.csv", encoding='cp949')
     st.write(df.head())
