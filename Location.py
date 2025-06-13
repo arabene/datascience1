@@ -5,23 +5,19 @@ from folium.plugins import MarkerCluster
 import pandas as pd
 
 def app():
-    st.title("진주시 CCTV 현황")
+    st.title("전기차 충전소 현황")
 
     df = pd.read_csv("/workspaces/datascience1/charger_20230531.csv", encoding='euc-kr')
 
-    st.dataframe(df, height=200)
 
-    df[["lat","lon"]] = df[["위도","경도"]]
+# '위도경도' 열을 쉼표(,) 기준으로 분리하여 '위도', '경도' 두 개의 새로운 열 만들기
+    df[['위도', '경도']] = df['위도경도'].str.split(',', expand=True)
 
-    m = folium.Map(location=[35.1799817, 128.1076213], zoom_start=13)
+    # 문자열 상태일 수 있으니 실수(float)로 변환
+    df['위도'] = df['위도'].astype(float)
+    df['경도'] = df['경도'].astype(float)
 
-    marker_cluster = MarkerCluster().add_to(m)
+    # 필요하면 원본 '위도경도' 열은 삭제 가능
+    # df = df.drop(columns=['위도경도'])
 
-    for idx, row in df.iterrows():
-        folium.Marker(
-            location=[row["lat"], row["lon"]],
-            popup=row["설치장소"],
-            icon=folium.Icon(color="blue", icon="info-sign"),
-        ).add_to(marker_cluster)
-
-    folium_static(m)
+    print(df.head())
